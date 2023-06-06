@@ -10,18 +10,18 @@ import com.demo.entity.Student;
 import com.demo.repositary.StudentRepositary;
 
 @Component
-public class StudentDetailServiceImpl  implements UserDetailsService{
-	
+public class StudentDetailServiceImpl implements UserDetailsService {
+
 	@Autowired
 	private StudentRepositary repositary;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Student student=repositary.findByEmail(username);
-		if(student==null) {
+		Student student = repositary.findByEmail(username);
+		if (student == null) {
 			throw new UsernameNotFoundException("Invalid Email !!");
 		}
-		CustomStudentDetail customStudentDetail =new CustomStudentDetail(student);
+		CustomStudentDetail customStudentDetail = new CustomStudentDetail(student);
 		return customStudentDetail;
 	}
 
